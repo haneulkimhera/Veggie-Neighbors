@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "9434107573",
+    "project_id": "veggie-neighbors-3df82",
+    "storage_bucket": "veggie-neighbors-3df82.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:9434107573:android:b54eeb0492c7e3dfd3f8fc",
+        "android_client_info": {
+          "package_name": "com.example.veggieneighbors"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAG-Nyqaj4LiTPZbVhKKi7_7GebzLTxL28"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

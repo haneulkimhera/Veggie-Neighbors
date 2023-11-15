@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:title = ""
+        android:id="@+id/myfridgeTabBtn"
+        android:icon="@drawable/img_10"
+        />
+
+    <item
+        android:title = ""
+        android:id="@+id/nearmeTabBtn"
+        android:icon="@drawable/img_11"
+        />
+
+    <item
+        android:title = ""
+        android:id="@+id/homeTabBtn"
+        android:icon="@drawable/img_14"
+        />
+
+    <item
+        android:title = ""
+        android:id="@+id/cartTabBtn"
+        android:icon="@drawable/img_12"
+        />
+
+    <item
+        android:title = ""
+        android:id="@+id/mypageTabBtn"
+        android:icon="@drawable/img_13"
+        />
+
+</menu>
