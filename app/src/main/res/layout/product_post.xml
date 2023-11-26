@@ -21,7 +21,7 @@
             android:layout_width="170dp"
             android:layout_height="180dp"
             android:scaleType="centerCrop"
-            app:srcCompat="@drawable/img_8" />
+            app:srcCompat="@drawable/figs" />
 
         <TextView
             android:id="@+id/ProductPostTitle"
