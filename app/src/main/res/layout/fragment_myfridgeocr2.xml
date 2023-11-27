@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".Myfridgeocr2Fragment">
+
+    <ImageView
+        android:id="@+id/imageView16"
+        android:layout_width="341dp"
+        android:layout_height="394dp"
+        android:layout_marginTop="120dp"
+        android:src="@drawable/img_fridgeocr7"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/text_view_ocr_result"
+        android:layout_width="293dp"
+        android:layout_height="235dp"
+        android:layout_marginTop="192dp"
+        android:background="@android:color/white"
+        android:padding="16dp"
+        android:text="OCR Result will appear here"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/add_to_my_fridge"
+        android:layout_width="140dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="120dp"
+        android:src="@drawable/img_ocraddtofridge"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.11"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_ocr_result" />
+
+    <ImageView
+        android:id="@+id/imagecancel"
+        android:layout_width="140dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="120dp"
+        android:src="@drawable/img_ocrcancel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.567"
+        app:layout_constraintStart_toEndOf="@+id/add_to_my_fridge"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_ocr_result" />
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
