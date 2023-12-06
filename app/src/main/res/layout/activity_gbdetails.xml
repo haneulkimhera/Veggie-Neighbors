@@ -10,7 +10,7 @@
         android:id="@+id/productImage"
         android:layout_width="411dp"
         android:layout_height="362dp"
-        android:src="@drawable/img_8"
+        android:src="@drawable/img_25"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -123,29 +123,14 @@
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="are participating in this GB !"
+        android:text="click to participate in this GB !"
         android:textColor="#357138"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.535"
+        app:layout_constraintHorizontal_bias="0.486"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/GBDescTxt"
-        app:layout_constraintVertical_bias="0.139" />
-
-    <TextView
-        android:id="@+id/GBParticipateTxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="5dp"
-        android:text="(6/8)"
-        android:textAlignment="viewEnd"
-        android:textColor="#357138"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/textView4"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.904" />
+        app:layout_constraintVertical_bias="0.126" />
 
     <ImageView
         android:id="@+id/participateBtn"

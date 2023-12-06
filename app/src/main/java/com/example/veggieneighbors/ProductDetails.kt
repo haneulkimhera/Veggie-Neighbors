@@ -1,5 +1,6 @@
 package com.example.veggieneighbors
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -17,9 +18,8 @@ class ProductDetails : AppCompatActivity() {
         binding = ActivityProductDetailsBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-
         setViewContents(binding)
-
+        availableBtnClickListener()
     }
 
     fun setViewContents(binding:ActivityProductDetailsBinding){
@@ -54,12 +54,14 @@ class ProductDetails : AppCompatActivity() {
     }
 
     fun availableBtnClickListener(){
-
+        binding.availableBtn.setOnClickListener {
+            Log.d("ITM", "availableBtnClicked")
+            startActivity(Intent(this,AvailableGB::class.java).putExtra("productId",binding.productTitleTxt.text))
+        }
     }
 
     fun createBtnClickListener(){
 
     }
-
 
 }

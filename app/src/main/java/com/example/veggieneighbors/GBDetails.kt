@@ -35,7 +35,6 @@ class GBDetails : AppCompatActivity() {
         binding.GBUsernameTxt.text = username
         binding.GBUnitTxt.text = unit
         binding.GBPriceTxt.text = price
-        binding.GBParticipateTxt.text = participate
         binding.GBDescTxt.text = description
 
         val storage: FirebaseStorage = FirebaseStorage.getInstance()

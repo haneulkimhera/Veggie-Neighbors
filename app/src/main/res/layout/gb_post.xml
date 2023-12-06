@@ -48,7 +48,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
-            android:src="@drawable/img_6" />
+            android:src="@drawable/img_25" />
 
         <ImageView
             android:id="@+id/border"
@@ -100,20 +100,6 @@
         app:layout_constraintTop_toBottomOf="@+id/GBPostUsername"
         app:layout_constraintVertical_bias="0.319" />
 
-    <TextView
-        android:id="@+id/GBParticipate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="( 2/5 )"
-        android:textAlignment="textEnd"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/textView5"
-        app:layout_constraintEnd_toEndOf="@+id/GBPostTitle"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/GBPostTitle"
-        app:layout_constraintTop_toTopOf="@+id/textView5"
-        app:layout_constraintVertical_bias="0.0" />
-
     <ImageView
         android:id="@+id/GBEnterBtn"
         android:layout_width="80dp"
@@ -122,8 +108,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.942"
         app:layout_constraintStart_toStartOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/GBParticipate"
-        app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/img_5" />
 
 
