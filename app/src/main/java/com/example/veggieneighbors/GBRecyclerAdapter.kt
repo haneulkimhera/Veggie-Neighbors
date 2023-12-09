@@ -18,7 +18,6 @@ import com.google.firebase.storage.FirebaseStorage
 class GBRecyclerAdapter(val GBPostList: List<GBPostData>): RecyclerView.Adapter<GBRecyclerAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GBRecyclerAdapter.ViewHolder {
         val binding = GbPostBinding.inflate(LayoutInflater.from(parent.context),parent,false)
-
         val view = LayoutInflater.from(parent.context).inflate(R.layout.gb_post, parent, false)
         return ViewHolder(binding)
     }

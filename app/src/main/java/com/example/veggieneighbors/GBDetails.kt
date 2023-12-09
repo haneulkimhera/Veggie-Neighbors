@@ -20,6 +20,8 @@ class GBDetails : AppCompatActivity() {
         setContentView(binding.root)
 
         setViewContents(binding)
+
+        binding.GBTitleTxt.isSelected=true
     }
 
     fun setViewContents(binding:ActivityGbdetailsBinding){
