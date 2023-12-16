@@ -10,7 +10,7 @@
         android:id="@+id/productImage"
         android:layout_width="411dp"
         android:layout_height="362dp"
-        android:src="@drawable/img_8"
+        android:src="@drawable/img_25"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

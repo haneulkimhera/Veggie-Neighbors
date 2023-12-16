@@ -1,5 +1,6 @@
 package com.example.veggieneighbors
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -17,9 +18,9 @@ class ProductDetails : AppCompatActivity() {
         binding = ActivityProductDetailsBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-
         setViewContents(binding)
-
+        availableBtnClickListener()
+        createBtnClickListener()
     }
 
     fun setViewContents(binding:ActivityProductDetailsBinding){
@@ -54,12 +55,30 @@ class ProductDetails : AppCompatActivity() {
     }
 
     fun availableBtnClickListener(){
-
+        binding.availableBtn.setOnClickListener {
+            Log.d("ITM", "availableBtnClicked")
+            startActivity(Intent(this,AvailableGB::class.java).putExtra("productId",binding.productTitleTxt.text))
+        }
     }
 
     fun createBtnClickListener(){
+        binding.createBtn.setOnClickListener {
+            Log.d("ITM","createBtn is clicked")
+            startActivity(Intent(this, CreatePost::class.java).apply {
+                putExtra("productId",binding.productTitleTxt.text)
+                putExtra( "productPrice",binding.productPriceTxt.text)
+                putExtra("productImg",intent.getStringExtra("img"))
+            })
 
+//            val intent = Intent(this, CreatePost::class.java).apply {
+//                putExtra("productId", binding.productTitleTxt.text.toString())
+//                putExtra("productPrice", binding.productPriceTxt.text.toString())
+////                putExtra("productImg", intent.getStringExtra("img"))
+//            }
+
+//            startActivity(intent)
+
+//            startActivity(Intent(this,CreatePost::class.java).putExtra("productId",binding.productTitleTxt.text))
+        }
     }
-
-
 }
