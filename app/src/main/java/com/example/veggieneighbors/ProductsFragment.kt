@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -43,7 +44,7 @@ class ProductsFragment : Fragment(), CategorySelectionListener{
     private var param1: String? = null
     private var param2: String? = null
     lateinit var binding: FragmentProductsBinding
-    private var selectedCategory: String = "Herbs"
+    private var selectedCategory: String = "Fruits"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,7 +62,8 @@ class ProductsFragment : Fragment(), CategorySelectionListener{
 
         binding=FragmentProductsBinding.inflate(inflater)
         showCategoryRecycler()
-        showProductRecycler()
+        showProductsOnSelectedCategory()
+        search()
 
         return binding.root
     }
@@ -88,7 +90,7 @@ class ProductsFragment : Fragment(), CategorySelectionListener{
     }
 
     fun showCategoryRecycler(){
-        val categoryList = arrayListOf<String>("Organic","Herbs","Fruits","Vegetables","Ugly")
+        val categoryList = arrayListOf<String>("Fruits","Vegetables","Organic","Herbs","Ugly")
 
         val categoryRecyclerAdapter = categoryRecyclerAdapter (categoryList,this)
         binding.categoryRecyclerView.adapter = categoryRecyclerAdapter
@@ -100,12 +102,22 @@ class ProductsFragment : Fragment(), CategorySelectionListener{
     override fun onCategorySelected(category: String) {
         selectedCategory = category
         binding.selectedCategoryTxt.text = selectedCategory
-        showProductRecycler()
+        showProductsOnSelectedCategory()
         Log.d("ITM", "Selected Category in onCategorySelected(): $selectedCategory")
     }
 
+    fun search(){
+        binding.searchBtn.setOnClickListener {
+            val inputMethodManager = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            inputMethodManager.hideSoftInputFromWindow(binding.searchInput.windowToken, 0)
+            val keyword = binding.searchInput.editText?.text.toString()
+            binding.selectedCategoryTxt.text = "searched with \""+keyword+"\"..."
+            showProductsOnKeyword(keyword)
+        }
+    }
 
-    fun showProductRecycler() {
+
+    fun showProductsOnSelectedCategory() {
         val db = FirebaseFirestore.getInstance()
         val productPostList = mutableListOf<ProductPostData>()
         val adapter = productRecyclerAdapter(productPostList)
@@ -131,6 +143,48 @@ class ProductsFragment : Fragment(), CategorySelectionListener{
                     Log.d("ITM", "item imported, title:${item.title}, category:${item.category}")
 
                     if (item.category == selectedCategory) {
+                        productPostList.add(item)
+                        Log.d("ITM", "item added")
+                    }
+                }
+                adapter.notifyDataSetChanged()
+                Log.d("ITM", "adapter notified")
+
+            } catch (exception: Exception) {
+                Log.d("ITM", "Error getting documents: $exception")
+            }
+        }
+
+    }
+
+    fun showProductsOnKeyword(keyword:String) {
+        val db = FirebaseFirestore.getInstance()
+        val productPostList = mutableListOf<ProductPostData>()
+        val adapter = productRecyclerAdapter(productPostList)
+
+        binding.productRecyclerView.adapter = adapter
+        binding.productRecyclerView.layoutManager = GridLayoutManager(context, 2)
+
+        Log.d("ITM", "showProductsOnKeyword() executed")
+        GlobalScope.launch(Dispatchers.Main) {
+            try {
+                val result = db.collection("Product Posts").get().await()
+
+                productPostList.clear()
+                for (document in result) {
+                    val item = ProductPostData(
+                        document.getString("title") ?: "",
+                        document.getString("farm") ?: "",
+                        document.getString("category") ?: "",
+                        document.getString("price") ?: "",
+                        document.getString("unit") ?: "",
+                        document.getString("img") ?: ""
+                    )
+                    Log.d("ITM", "item imported, title:${item.title}, category:${item.category}")
+
+                    Log.d("ITM", "item title : ${item.title}, keyword : $keyword")
+
+                    if (item.title.contains(keyword)) {
                         productPostList.add(item)
                         Log.d("ITM", "item added")
                     }

@@ -2,6 +2,9 @@ package com.example.veggieneighbors
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.widget.EditText
+import android.widget.Toast
 import com.example.veggieneighbors.databinding.ActivityAvailableGbBinding
 import com.example.veggieneighbors.databinding.ActivityCreatePostBinding
 import com.google.firebase.firestore.FirebaseFirestore
@@ -17,6 +20,7 @@ class CreatePost : AppCompatActivity() {
 
         calculatePrice()
         gatherBtnClickListener()
+        cancelBtnClickListener()
 
     }
 
@@ -30,12 +34,35 @@ class CreatePost : AppCompatActivity() {
         }
     }
     fun gatherBtnClickListener(){
-        binding.gatherBtn.setOnClickListener {
-            val db = FirebaseFirestore.getInstance()
-            val newGB = createNewGB()
-            val newDoc = db.collection("GB Posts").document()
-            newDoc.set(newGB)
 
+        binding.gatherBtn.setOnClickListener {
+            Log.d("ITM","gatherBtn is clicked")
+
+            val title = binding.editTextTitle
+            val participate = binding.editTextNumber
+            val unit = binding.editTextUnit
+            val price = binding.editTextPrice
+            val region = binding.editTextRegion
+
+            var detailsList = mutableMapOf(Pair(title,"Title"),Pair(participate,"Number of Participants"),Pair(unit,"Unit"),Pair(price,"Price"),Pair(region,"Location"))
+
+            if(isAnyNull(detailsList)==true){
+                Log.d("ITM","detail is missed")
+                detailsCheck(detailsList)
+            }
+            else{
+                val db = FirebaseFirestore.getInstance()
+                val newGB = createNewGB()
+                val newDoc = db.collection("GB Posts").document()
+                newDoc.set(newGB)
+
+                finish()
+            }
+        }
+    }
+
+    fun cancelBtnClickListener(){
+        binding.cancelBtn.setOnClickListener {
             finish()
         }
     }
@@ -61,5 +88,29 @@ class CreatePost : AppCompatActivity() {
         return newGB
     }
 
+    fun detailsCheck(detailsList:MutableMap<EditText,String>){
+        Log.d("ITM","detailsCheck() is called")
+        loop@ for (detail in detailsList){
+            val editText = detail.key
+            val name = detail.value
+            if (editText.text.toString().equals("") || editText == null){
+                Log.d("ITM","detailsCheck() is called - $name is missed")
+                editText.hint = "* Please fill in the blank"
+                Toast.makeText(this, "$name is missed. Please Check again", Toast.LENGTH_SHORT).show()
+                break@loop
+            }
+        }
+    }
 
+    fun isAnyNull(detailsList:MutableMap<EditText,String>):Boolean{
+        Log.d("ITM","isAnyNull() is called")
+        var isNull = false
+        for (detail in detailsList){
+            val editText = detail.key
+            if(editText.text.toString().equals("") || editText == null){
+                isNull = true
+            }
+        }
+        return isNull
+    }
 }

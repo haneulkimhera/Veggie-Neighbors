@@ -14,7 +14,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/searchInput"
             android:layout_width="325dp"
-            android:layout_height="45dp"
+            android:layout_height="60dp"
             android:textColorHint="#858585"
             app:boxStrokeColor="#858585"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -33,9 +33,9 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <ImageView
-            android:id="@+id/imageView4"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:id="@+id/searchBtn"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:src="@drawable/img_15"
             app:layout_constraintBottom_toBottomOf="@+id/searchInput"
             app:layout_constraintEnd_toEndOf="parent"
@@ -51,6 +51,7 @@
             android:layout_marginStart="2dp"
             android:layout_marginTop="10dp"
             android:text="Categories"
+            android:textAlignment="gravity"
             android:textSize="16dp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -58,7 +59,7 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/searchInput"
             app:layout_constraintTop_toBottomOf="@+id/searchInput"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.014" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/categoryRecyclerView"
@@ -67,35 +68,35 @@
             android:layout_marginTop="5dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView2"
             app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/selectedCategoryTxt"
-            android:layout_width="wrap_content"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
             android:text="Fruits"
+            android:textAlignment="viewStart"
             android:textSize="16dp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/textView2"
-            app:layout_constraintHorizontal_bias="0.09"
-            app:layout_constraintStart_toStartOf="@+id/textView2"
+            app:layout_constraintHorizontal_bias="0.008"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/categoryRecyclerView"
-            app:layout_constraintVertical_bias="0.04" />
+            app:layout_constraintVertical_bias="0.029" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/productRecyclerView"
             android:layout_width="365dp"
-            android:layout_height="470dp"
+            android:layout_height="480dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.543"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/selectedCategoryTxt"
-            app:layout_constraintVertical_bias="0.101" />
+            app:layout_constraintVertical_bias="0.173" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
