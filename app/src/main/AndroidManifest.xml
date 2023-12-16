@@ -33,7 +33,9 @@
 
         </activity>
         <activity android:name=".CalendarActivity">
-            <!-- 필요한 경우 Intent Filter 추가 -->
+        </activity>
+
+        <activity android:name=".GPTActivity">
         </activity>
 
         <service

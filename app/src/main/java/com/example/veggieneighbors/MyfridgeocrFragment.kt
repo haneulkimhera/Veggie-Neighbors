@@ -79,6 +79,7 @@ class MyfridgeocrFragment : Fragment() {
                 CAMERA_REQUEST_CODE -> {
                     val imageUri = data.extras?.get("data") as? Bitmap
                     imageUri?.let { bitmap ->
+                        // TODO: 여기서 카메라로 찍은 비트맵 이미지를 Uri로 변환하거나 다른 방식으로 처리
 
                         val uri = convertBitmapToUri(bitmap)
                         navigateToMyfridgeocr1Fragment(uri)

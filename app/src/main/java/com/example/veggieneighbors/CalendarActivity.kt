@@ -5,8 +5,10 @@ import android.view.View
 import android.widget.Button
 import android.widget.CalendarView
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import java.text.SimpleDateFormat
 import java.util.*
@@ -22,6 +24,7 @@ class CalendarActivity : AppCompatActivity() {
     private lateinit var contextEditText: EditText
     private var selectedDate: String = ""
     private var currentDocumentId: String? = null
+    private lateinit var backBtn: ImageButton
 
     // Firebase Firestore 인스턴스
     private val db = FirebaseFirestore.getInstance()
@@ -54,6 +57,11 @@ class CalendarActivity : AppCompatActivity() {
         deleteBtn.setOnClickListener {
             deleteDiary()
         }
+
+        backBtn.setOnClickListener {
+            // "돌아가기" 버튼 클릭 시 이전 화면으로 이동
+            onBackPressed()
+        }
     }
 
     private fun initUI() {
@@ -65,6 +73,7 @@ class CalendarActivity : AppCompatActivity() {
         diaryContent = findViewById(R.id.diaryContent)
         title = findViewById(R.id.title)
         contextEditText = findViewById(R.id.contextEditText)
+        backBtn = findViewById(R.id.backButton) // "돌아가기" 버튼 초기화
         title.text = "Calendar"
     }
 
@@ -75,6 +84,8 @@ class CalendarActivity : AppCompatActivity() {
             .get()
             .addOnSuccessListener { documents ->
                 if (documents.isEmpty) {
+                    // 일정이 없는 경우 입력 필드 활성화
+                    contextEditText.isEnabled = true
                     resetUI()
                 } else {
                     for (document in documents) {
@@ -87,13 +98,15 @@ class CalendarActivity : AppCompatActivity() {
                 }
             }
             .addOnFailureListener {
+                // Handle failure
                 resetUI()
             }
     }
 
     private fun saveDiary() {
         val content = contextEditText.text.toString()
-        val event = hashMapOf("date" to selectedDate, "content" to content)
+        val timestamp = FieldValue.serverTimestamp()
+        val event = hashMapOf("date" to selectedDate, "content" to content, "timestamp" to timestamp)
 
         db.collection("FridgePosts").add(event)
             .addOnSuccessListener {
@@ -106,6 +119,7 @@ class CalendarActivity : AppCompatActivity() {
                 // Handle failure
             }
     }
+
 
     private fun updateDiary() {
         val content = contextEditText.text.toString()
