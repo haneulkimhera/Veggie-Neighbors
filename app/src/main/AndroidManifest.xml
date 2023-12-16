@@ -15,6 +15,12 @@
         android:theme="@style/Theme.VeggieNeighbors"
         tools:targetApi="31">
         <activity
+            android:name=".CreatePost"
+            android:exported="false" />
+        <activity
+            android:name=".AvailableGB"
+            android:exported="false" />
+        <activity
             android:name=".GBDetails"
             android:exported="false" />
         <activity
