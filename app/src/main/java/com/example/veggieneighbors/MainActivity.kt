@@ -15,8 +15,12 @@ class MainActivity : AppCompatActivity() {
 
         // Inflate the layout using binding
         binding = ActivityMainBinding.inflate(layoutInflater)
+
         val view = binding.root
-        setContentView(view)
+
+        setContentView(binding.root)
+
+
     }
 }
 
