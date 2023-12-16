@@ -29,7 +29,6 @@ class recyclerAdapter(val GBPosts:MutableList<GBPostData>): RecyclerView.Adapter
             binding.GBPostTitle.text = GBPost.title
             binding.GBPostUsername.text = GBPost.username
             binding.GBPostPrice.text = GBPost.price
-            binding.GBParticipate.text = GBPost.participate
         }
     }
 }

@@ -20,10 +20,15 @@
     <TextView
         android:id="@+id/GBPostTitle"
         android:layout_width="150dp"
-        android:layout_height="wrap_content"
+        android:layout_height="20dp"
         android:text="찰토마토 같이 사실 분-!"
         android:textColor="#000000"
         android:textStyle="bold"
+        android:ellipsize="marquee"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:singleLine="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
         app:layout_constraintBottom_toBottomOf="@+id/cardView"
         app:layout_constraintEnd_toEndOf="@+id/imageView"
         app:layout_constraintHorizontal_bias="0.431"
@@ -48,7 +53,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
-            android:src="@drawable/img_6" />
+            android:src="@drawable/img_25" />
 
         <ImageView
             android:id="@+id/border"
@@ -100,20 +105,6 @@
         app:layout_constraintTop_toBottomOf="@+id/GBPostUsername"
         app:layout_constraintVertical_bias="0.319" />
 
-    <TextView
-        android:id="@+id/GBParticipate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="( 2/5 )"
-        android:textAlignment="textEnd"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/textView5"
-        app:layout_constraintEnd_toEndOf="@+id/GBPostTitle"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/GBPostTitle"
-        app:layout_constraintTop_toTopOf="@+id/textView5"
-        app:layout_constraintVertical_bias="0.0" />
-
     <ImageView
         android:id="@+id/GBEnterBtn"
         android:layout_width="80dp"
@@ -122,8 +113,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.942"
         app:layout_constraintStart_toStartOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/GBParticipate"
-        app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/img_5" />
 
 
