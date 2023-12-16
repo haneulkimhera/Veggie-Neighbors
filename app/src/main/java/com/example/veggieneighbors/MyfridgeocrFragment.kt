@@ -4,6 +4,7 @@ import android.app.Activity.RESULT_OK
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
@@ -15,6 +16,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.app.ActivityCompat
 import com.example.veggieneighbors.databinding.FragmentMyfridgeocrBinding
+import java.io.File
+import java.io.FileOutputStream
 
 class MyfridgeocrFragment : Fragment() {
     private lateinit var binding: FragmentMyfridgeocrBinding
@@ -66,10 +69,37 @@ class MyfridgeocrFragment : Fragment() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode == RESULT_OK && data != null && requestCode == GALLERY_REQUEST_CODE) {
-            val uri = data.data
-            uri?.let { navigateToMyfridgeocr1Fragment(it) }
+
+        if (resultCode == RESULT_OK && data != null) {
+            when (requestCode) {
+                GALLERY_REQUEST_CODE -> {
+                    val imageUri = data.data
+                    imageUri?.let { navigateToMyfridgeocr1Fragment(it) }
+                }
+                CAMERA_REQUEST_CODE -> {
+                    val imageUri = data.extras?.get("data") as? Bitmap
+                    imageUri?.let { bitmap ->
+
+                        val uri = convertBitmapToUri(bitmap)
+                        navigateToMyfridgeocr1Fragment(uri)
+                    }
+                }
+            }
         }
+    }
+    private fun convertBitmapToUri(bitmap: Bitmap): Uri {
+        // 임시 파일을 생성합니다.
+        val file = File(requireContext().cacheDir, "temp_image" + System.currentTimeMillis() + ".png")
+        file.createNewFile()
+
+        // 파일에 비트맵을 저장합니다.
+        val outputStream = FileOutputStream(file)
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
+        outputStream.flush()
+        outputStream.close()
+
+        // 파일의 Uri를 반환합니다.
+        return Uri.fromFile(file)
     }
 
 

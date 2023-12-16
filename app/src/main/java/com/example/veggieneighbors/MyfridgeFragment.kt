@@ -1,5 +1,6 @@
     package com.example.veggieneighbors
 
+    import android.content.Intent
     import android.os.Bundle
     import androidx.fragment.app.Fragment
     import android.view.LayoutInflater
@@ -34,6 +35,8 @@
 
             return binding.root
         }
+
+
 
         private fun setupRecyclerView() {
             productAdapter = FridgeAdapter(productList)
@@ -79,6 +82,13 @@
             // Set click listener for imageView7
             binding.imageView7.setOnClickListener {
                 navigateToMyfridgeocrFragment()
+            }
+
+            // 캘린더 버튼 설정
+            val calendarButton = binding.calenderbutton // 이 부분에서 binding을 사용하여 버튼을 찾습니다.
+            calendarButton.setOnClickListener {
+                val intent = Intent(context, CalendarActivity::class.java)
+                startActivity(intent)
             }
         }
 
